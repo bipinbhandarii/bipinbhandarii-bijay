@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BHUWAN | CREATIVE PORTFLIO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #0a0a1a;
+            --secondary: #14142e;
+            --accent: #6c63ff;
+            --accent-light: #8a84ff;
+            --text: #ffffff;
+            --text-light: #b8b8d1;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: rgba(10, 10, 26, 0.9);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(108, 99, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            z-index: 1001;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Three Dot Menu Button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--accent);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 120px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: radial-gradient(var(--accent-light) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .image-placeholder {
+            width: 350px;
+            height: 350px;
+            margin: 0 auto;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(108, 99, 255, 0.3);
+        }
+        
+        .image-placeholder i {
+            font-size: 150px;
+            color: white;
+            opacity: 0.8;
+        }
+        
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 60%, rgba(10, 10, 26, 0.8) 100%);
+        }
+        
+        .hero-text h1 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+        
+        .typed-text-container {
+            height: 60px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .typed-text {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: var(--accent);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        /* Scroll Down Animation */
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-light);
+            font-size: 14px;
+            z-index: 10;
+        }
+        
+        .mouse {
+            width: 30px;
+            height: 50px;
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .wheel {
+            width: 4px;
+            height: 10px;
+            background-color: var(--accent);
+            border-radius: 2px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scroll 2s infinite;
+        }
+        
+        @keyframes scroll {
+            0% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+        }
+        
+        .arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 5px;
+        }
+        
+        .arrow span {
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-bottom: 2px solid var(--accent);
+            border-right: 2px solid var(--accent);
+            transform: rotate(45deg);
+            margin: -5px;
+            animation: arrow 2s infinite;
+        }
+        
+        .arrow span:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        
+        .arrow span:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        
+        .arrow span:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        @keyframes arrow {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        /* Skills Section */
+        .skills {
+            padding: 100px 0;
+            background-color: var(--secondary);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, background-color 0.3s;
+            border: 1px solid rgba(108, 99, 255, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .skill-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background-color: rgba(108, 99, 255, 0.1);
+        }
+        
+        .skill-icon {
+            font-size: 50px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .skill-card h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .skill-card p {
+            color: var(--text-light);
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 100px 0;
+            background-color: var(--primary);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 300px;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .portfolio-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(108, 99, 255, 0.8));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 25px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-overlay h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .portfolio-overlay p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(108, 99, 255, 0.2);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(108, 99, 255, 0.1);
+            border-radius: 50%;
+            color: var(--accent);
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                margin-bottom: 60px;
+            }
+            
+            .hero-text h1 {
+                font-size: 42px;
+            }
+            
+            .typed-text {
+                font-size: 28px;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--secondary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.5s ease;
+                z-index: 1000;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 20px 0;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            
+            .typed-text {
+                font-size: 24px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .image-placeholder {
+                width: 280px;
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">BHU<span>WAN </span></a>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Creative Digital Solutions</h1>
+                    <div class="typed-text-container">
+                        <span class="typed-text" id="typed-text"></span>
+                        <span class="cursor" id="cursor"></span>
+                    </div>
+                    <p>I create stunning digital experiences through web design, video editing, graphic design, and strategic affiliate marketing. Let's bring your vision to life.</p>
+                    <a href="#contact" class="btn">Get In Touch</a>
+                </div>
+                <div class="hero-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Scroll Down Animation -->
+        <div class="scroll-down">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="arrow">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>Scroll Down</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title">My Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Design</h3>
+                    <p>Creating responsive, user-friendly websites with modern design principles and cutting-edge technologies.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Video Editing</h3>
+                    <p>Professional video editing, motion graphics, and visual effects to tell compelling stories.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Graphic Design</h3>
+                    <p>Eye-catching logos, branding materials, and digital artwork that communicates your message effectively.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Affiliate Marketing</h3>
+                    <p>Strategic marketing plans to maximize your revenue through effective affiliate partnerships and campaigns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">My Work</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Web Design Project">
+                    <div class="portfolio-overlay">
+                        <h3>E-Commerce Website</h3>
+                        <p>Modern e-commerce platform with intuitive UI/UX</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Video Editing Project">
+                    <div class="portfolio-overlay">
+                        <h3>Corporate Video Series</h3>
+                        <p>Complete video production for tech company</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1634942537034-2531766767d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1222&q=80" alt="Graphic Design Project">
+                    <div class="portfolio-overlay">
+                        <h3>Brand Identity Design</h3>
+                        <p>Complete branding package for startup</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BHUWAN </h3>
+                    <p>Creative professional specializing in web design, video editing, graphic design, and affiliate marketing. Let's collaborate on your next project.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope"></i> Service@bhuwan.com.np</p>
+                    <p><i class="fas fa-phone"></i> +97798××××××××</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kathmandu Nepal</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#home">Home</a></p>
+                    <p><a href="#skills">Skills</a></p>
+                    <p><a href="#portfolio">Portfolio</a></p>
+                    <p><a href="#contact">Contact</a></p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 BHUWAN. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Typewriter effect with "Write Delete" animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const typedTextElement = document.getElementById('typed-text');
+            const cursorElement = document.getElementById('cursor');
+            
+            const texts = [
+                "Web Design",
+                "Video Editing",
+                "Graphic Design",
+                "Affiliate Marketing"
+            ];
+            
+            let textIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 100;
+            
+            function typeWriter() {
+                const currentText = texts[textIndex];
+                
+                if (!isDeleting && charIndex <= currentText.length) {
+                    // Typing effect
+                    typedTextElement.textContent = currentText.substring(0, charIndex);
+                    charIndex++;
+                    typingSpeed = 100;
+                } else if (isDeleting && charIndex >= 0) {
+                    // Deleting effect
+                    typedTextElement.textContent = currentText.substring(0, charIndex);
+                    charIndex--;
+                    typingSpeed = 50;
+                }
+                
+                // Switch between typing and deleting
+                if (!isDeleting && charIndex === currentText.length + 1) {
+                    // Pause at the end of typing
+                    isDeleting = true;
+                    typingSpeed = 1500;
+                } else if (isDeleting && charIndex === -1) {
+                    // Move to next text after deleting
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                    typingSpeed = 500;
+                }
+                
+                setTimeout(typeWriter, typingSpeed);
+            }
+            
+            // Start the typewriter effect after a brief delay
+            setTimeout(typeWriter, 1000);
+            
+            // Mobile menu toggle
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+            
+            mobileMenu.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.padding = '15px 0';
+                    header.style.backgroundColor = 'rgba(10, 10, 26, 0.95)';
+                } else {
+                    header.style.padding = '20px 0';
+                    header.style.backgroundColor = 'rgba(10, 10, 26, 0.9)';
+                }
+            });
+            
+            // Scroll animation for skill cards and portfolio items
+            function checkScroll() {
+                const skillCards = document.querySelectorAll('.skill-card');
+                const portfolioItems = document.querySelectorAll('.portfolio-item');
+                
+                skillCards.forEach(card => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (cardTop < windowHeight - 100) {
+                        card.classList.add('animate');
+                    }
+                });
+                
+                portfolioItems.forEach(item => {
+                    const itemTop = item.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (itemTop < windowHeight - 100) {
+                        item.classList.add('animate');
+                    }
+                });
+            }
+            
+            // Initial check on page load
+            checkScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkScroll);
+        });
+    </script>
+</body>
+</html>
